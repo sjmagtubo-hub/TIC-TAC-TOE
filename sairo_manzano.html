@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Web Design Layout - Tic Tac Toe</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      background-image: url("games.jfif");
+    }
+
+    /* Header/Blog Title */
+    .header {
+      padding: 30px;
+      text-align: center;
+     background-image: url("games.jfif");
+    }
+
+    .header h1 {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+
+    /* Style the top navigation bar */
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    /* Style the topnav links */
+    .topnav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    /* Change color on hover */
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Left column */
+    .leftcolumn {   
+      float: center;
+      width: 100%;
+    }
+
+    /* Right column */
+    .rightcolumn {
+      float: left;
+      width: 0%;
+      background-color: #f1f1f1;
+      padding-left: 20px;
+    }
+
+    /* Fake image */
+    .fakeimg {
+      background-color: #aaa;
+      width: 100%;
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+
+    /* Add a card effect for articles */
+    .card {
+      background-color: white;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .card h2, .card h3, .card h5, .card p {
+      margin-bottom: 12px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 20px;
+      text-align: center;
+      background-image: url("games.jfif");
+      margin-top: 20px;
+    }
+
+    /* --- TIC TAC TOE STYLES --- */
+    .tic-tac-toe-wrapper {
+      background-color: lightcyan;
+      text-align: center;
+      padding: 25px 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .tic-tac-toe-wrapper h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #191913;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .game {
+      width: min(320px, 75vw);
+      height: min(320px, 75vw);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .box {
+      height: calc((100% - 20px) / 3);
+      width: calc((100% - 20px) / 3);
+      border-radius: 1rem;
+      border: none;
+      box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.3);
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: red;
+      background-color: yellow;
+      cursor: pointer;
+    }
+
+    .box:hover:not(:disabled) {
+      background-color: chocolate;
+    }
+
+    #reset, #new-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 1.1rem;
+      background: #191913;
+      color: white;
+      border-radius: 1rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #reset:hover, #new-btn:hover {
+      background: #38382c;
+    }
+
+    #msg {
+      font-size: 1.75rem;
+      font-weight: bold;
+      color: #191913;
+      margin-bottom: 10px;
+    }
+
+    .msg-container {
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    /* Responsive layout - stack columns below 800px */
+    @media screen and (max-width: 800px) {
+      .leftcolumn, .rightcolumn {   
+        width: 100%;
+        padding: 0;
+      }
+    }
+
+    /* Responsive layout - stack nav links below 400px */
+    @media screen and (max-width: 400px) {
+      .topnav a {
+        float: none;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <img src="game.jfif" height="15%" width="15%">
+    <h1>TIC-TAC-TOE</h1>
+    <p>IAN AND SAIRO CORP.</p>
+  </div>
+
+  <div class="topnav">
+    <a href="SubPage1.html">games 1</a>
+    <a href="SubPage2.html">games 2</a>
+    <a href="#">games 3</a>
+    <a href="#" style="float:right">Link</a>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>PLAY TIC TAC TOE</h2>
+        <h5>Interactive Mini-Game, Nov 21, 2026</h5>
+
+        <!-- Embedded Tic Tac Toe Game -->
+        <div class="tic-tac-toe-wrapper">
+          <div class="msg-container hide">
+            <p id="msg">Winner</p>
+            <button id="new-btn">New Game</button>
+          </div>
+
+          <h2>Tic Tac Toe</h2>
+          <div class="container">
+            <div class="game">
+              <button class="box"></button>
+              <button class="box"></button>
+              <button class="box"></button>
+              <button class="box"></button>
+              <button class="box"></button>
+              <button class="box"></button>
+              <button class="box"></button>
+              <button class="box"></button>
+              <button class="box"></button>
+            </div>
+          </div>
+          <button id="reset">Reset Game</button>
+        </div>
+
+        <p>How to play: Player O starts first. Take turns clicking the yellow squares to get three in a row horizontally, vertically, or diagonally.</p>
+      </div>
+    </div>
+
+    <div class="rightcolumn">
+     
+      </div>
+
+      
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>ABOUT US</h2>
+    <img src="game.jfif" height="15%" width="15%">
+    <H2>TELEPHONE:</H2><P>547340027294</P>
+    <H2>ADDRESS:</H2><P>Sumitomo Fudosan Osaki Garden Tower 9F, 1-1-1
+Nishi-Shinagawa, Shinagawa-ku, Tokyo 141-0033, Japan
+    </P>
+  </div>
+
+  <script>
+    let boxes = [...document.querySelectorAll('.box')];
+    let resetBtn = document.querySelector('#reset');
+    let turnO = true; // Player O starts
+    let newGameBtn = document.querySelector('#new-btn');
+    let msgContainer = document.querySelector('.msg-container');
+    let msg = document.querySelector('#msg');
+
+    const winPatterns = [
+      [0, 1, 2],
+      [0, 3, 6],
+      [0, 4, 8],
+      [1, 4, 7],
+      [2, 5, 8],
+      [2, 4, 6],
+      [3, 4, 5],
+      [6, 7, 8]
+    ];
+
+    boxes.forEach((box) => {
+      box.addEventListener('click', function () {
+        if (turnO) {
+          box.innerText = 'O';
+          box.style.color = 'green';
+          turnO = false;
+        } else {
+          box.innerText = 'X';
+          box.style.color = 'black';
+          turnO = true;
+        }
+        box.disabled = true;
+        checkWinner();
+      });
+    });
+
+    const enableBoxes = () => {
+      for (let box of boxes) {
+        box.disabled = false;
+        box.innerText = "";
+      }
+    };
+
+    const disableBoxes = () => {
+      for (let box of boxes) {
+        box.disabled = true;
+      }
+    };
+
+    const showWinner = (winner) => {
+      msg.innerText = `Congratulations, Winner is ${winner}`;
+      msgContainer.classList.remove('hide');
+      disableBoxes();
+    };
+
+    const checkWinner = () => {
+      let hasWin = false;
+      for (let pattern of winPatterns) {
+        let pos1Val = boxes[pattern[0]].innerText;
+        let pos2Val = boxes[pattern[1]].innerText;
+        let pos3Val = boxes[pattern[2]].innerText;
+
+        if (pos1Val !== "" && pos2Val !== "" && pos3Val !== "" &&
+            pos1Val === pos2Val && pos2Val === pos3Val) {
+          showWinner(pos1Val);
+          hasWin = true;
+          return;
+        }
+      }
+
+      if (!hasWin) {
+        const allBoxes = [...boxes].every((box) => box.innerText !== "");
+        if (allBoxes) {
+          msgContainer.classList.remove('hide');
+          msg.innerText = 'Match Drawn';
+        }
+      }
+    };
+
+    const resetGame = () => {
+      turnO = true;
+      enableBoxes();
+      msgContainer.classList.add('hide');
+    };
+
+    newGameBtn.addEventListener('click', resetGame);
+    resetBtn.addEventListener('click', resetGame);
+  </script>
+
+</body>
+</html>
